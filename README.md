@@ -4,20 +4,57 @@ An intelligent content filtering system that removes inappropriate content from 
 
 ## System Requirements
 
-- Python 3.8 or higher
+- Python 3.8 to 3.11 (3.12 not fully supported yet)
 - Windows 10/11, macOS, or Linux
 - At least 4GB RAM
 - 2GB free disk space
 
 ## Installation
 
-1. Clone the repository:
+1. Ensure correct Python version is installed:
+```bash
+# Check Python version
+python --version  # or python3 --version
+# Should show Python 3.8, 3.9, 3.10, or 3.11 (NOT 3.12)
+```
+
+2. If needed, install Python 3.11:
+```bash
+# Windows: Download from https://www.python.org/downloads/release/python-3115/
+
+# Ubuntu/Debian
+sudo apt update
+sudo apt install python3.11 python3.11-venv
+
+# macOS
+brew install python@3.11
+```
+
+3. Update pip to the latest version:
+```bash
+# Windows
+python -m pip install --upgrade pip
+
+# macOS/Linux
+python3 -m pip install --upgrade pip
+```
+
+4. Install build tools:
+```bash
+# Windows
+python -m pip install --upgrade setuptools wheel
+
+# macOS/Linux
+python3 -m pip install --upgrade setuptools wheel
+```
+
+5. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/content_filter_project.git
 cd content_filter_project
 ```
 
-2. Create a virtual environment:
+6. Create and activate virtual environment:
 ```bash
 # Windows
 python -m venv venv
@@ -28,15 +65,63 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. Install dependencies:
+7. Install dependencies in correct order:
 ```bash
+# First install core packages
+pip install --upgrade pip setuptools wheel
+pip install numpy==1.24.3
+pip install torch==2.2.0
+
+# Then install remaining requirements
 pip install -r requirements.txt
 ```
 
-4. Install spaCy language model:
+8. Install spaCy language model:
 ```bash
 python -m spacy download en_core_web_sm
 ```
+
+## Common Installation Issues
+
+1. If you get numpy build error:
+   ```
+   Solution: Make sure you're using Python 3.8-3.11 (NOT 3.12)
+   If using 3.12, downgrade to 3.11:
+   1. Uninstall Python 3.12
+   2. Install Python 3.11
+   3. Create new virtual environment
+   4. Follow installation steps again
+   ```
+
+2. If you get distutils error:
+   ```
+   This is a built-in package. No need to install it separately.
+   Make sure you've installed setuptools and wheel as shown in step 4.
+   ```
+
+3. If you get build errors:
+   ```
+   # Windows
+   pip install --upgrade Microsoft.C++-Redistributable
+   
+   # Linux
+   sudo apt-get install python3-dev build-essential
+   
+   # macOS
+   xcode-select --install
+   ```
+
+4. If you get SSL errors:
+   ```
+   # Update certificates
+   pip install --upgrade certifi
+   ```
+
+5. If pip install fails:
+   ```
+   # Try installing with these flags
+   pip install --no-cache-dir --force-reinstall numpy==1.24.3
+   ```
 
 ## Running the Application
 
