@@ -1,0 +1,9 @@
+This is a sample document to test the content filter.
+
+Some normal text here that should pass through without any issues.
+
+Here's some inappropriate content that should be filtered: offensive explicit inappropriate.
+
+More regular content here that should remain unchanged.
+
+This is the end of the test document. 
